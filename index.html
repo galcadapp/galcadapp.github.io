@@ -1,173 +1,64 @@
 <!doctype html>
 <html lang="so">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1754D1">
-  <meta name="description" content="Galcad Android: si toos ah oo ammaan ah uga soo deji APK-ga rasmiga ah ee GitHub Releases.">
-  <title>Galcad — Soo deji Android App</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231754D1'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='37' font-weight='800' text-anchor='middle' fill='white'%3EG%3C/text%3E%3C/svg%3E">
-  <style>
-    :root{
-      color-scheme:light;
-      --brand:#1754D1;--brand-dark:#103C9E;--ink:#122548;--muted:#61718B;
-      --page:#EFF4FD;--paper:#FFFFFF;--line:#E1E9F6;--green:#0F814C;
-      --shadow:0 18px 45px rgba(24,57,112,.13);
-    }
-    *,*::before,*::after{box-sizing:border-box}
-    html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-    body{margin:0;background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;line-height:1.55}
-    a{color:var(--brand)}
-    button,a{-webkit-tap-highlight-color:transparent}
-    :focus-visible{outline:3px solid #F59E0B;outline-offset:4px}
-    .shell{width:min(100%,480px);margin:auto;padding-bottom:32px}
-    .hero{position:relative;overflow:hidden;text-align:center;color:#fff;background:linear-gradient(145deg,#236DE7 0%,#1547B8 68%,#103C9E 100%);padding:45px 24px 91px;border-radius:0 0 34px 34px}
-    .hero::before,.hero::after{content:"";position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:50%;pointer-events:none}
-    .hero::before{width:300px;height:300px;top:-185px;right:-145px}
-    .hero::after{width:270px;height:270px;bottom:-207px;left:-115px}
-    .logo{position:relative;display:grid;place-items:center;margin:0 auto 18px;width:100px;height:100px;border-radius:27px;background:#fff;color:var(--brand);font-weight:900;font-size:57px;box-shadow:0 15px 32px rgba(0,21,78,.25)}
-    .hero h1{font-size:2.4rem;letter-spacing:-.045em;line-height:1.1;margin:0;font-weight:800}
-    .hero p{margin:10px auto 0;max-width:300px;opacity:.91;font-size:1rem}
-    .surface{position:relative;margin:-57px 16px 0;padding:24px 22px;border-radius:23px;background:var(--paper);box-shadow:var(--shadow)}
-    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#E9F7EF;color:var(--green);font-weight:750;font-size:.8rem;padding:6px 11px}
-    .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-    .surface h2{font-size:1.42rem;letter-spacing:-.02em;margin:15px 0 7px;line-height:1.25}
-    .sub{color:var(--muted);font-size:.92rem;margin:0}
-    .details{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:21px 0 20px;padding:15px 0;text-align:center;gap:3px}
-    .details>div:not(:last-child){border-right:1px solid var(--line)}
-    .details strong{display:block;font-size:1.02rem;line-height:1.35}
-    .details span{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}
-    .cta{display:flex;align-items:center;justify-content:center;gap:12px;min-height:62px;width:100%;text-align:center;background:var(--brand);border:0;border-radius:16px;box-shadow:0 8px 18px rgba(23,84,209,.23);color:white;text-decoration:none;font-weight:800;font-size:1.14rem;padding:16px;transition:background .15s,transform .15s}
-    .cta:hover{background:var(--brand-dark)}
-    .cta:active{transform:translateY(1px)}
-    .cta svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-    .hint{text-align:center;font-size:.82rem;color:var(--muted);margin:12px 0 0}
-    .native{display:flex;align-items:flex-start;gap:10px;background:#F1F6FF;border:1px solid #D7E5FF;border-radius:13px;margin-top:18px;padding:12px;color:#294777;font-size:.9rem}
-    .native svg{width:19px;height:19px;flex:none;margin-top:2px}
-    .native p{margin:0}
-    .notice{display:none;margin-top:16px;background:#FFF6E8;color:#805010;padding:12px 14px;border:1px solid #F6DCB3;border-radius:13px;font-size:.9rem}
-    .notice.visible{display:block}
-    .steps{margin:17px 16px 0;padding:21px 20px;background:var(--paper);border-radius:21px;border:1px solid var(--line)}
-    .section-title{margin:0 0 15px;font-size:1.16rem;letter-spacing:-.02em}
-    .step{display:flex;align-items:flex-start;gap:13px;padding:8px 0}
-    .num{width:30px;height:30px;flex:none;border-radius:10px;background:#E9F0FF;color:var(--brand);font-weight:800;display:grid;place-items:center}
-    .step strong{display:block;font-size:.94rem}
-    .step p{font-size:.88rem;color:var(--muted);margin:1px 0 0}
-    .links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-    .secondary{display:flex;align-items:center;justify-content:center;padding:11px 9px;min-height:47px;text-decoration:none;text-align:center;font-size:.88rem;font-weight:700;border:1px solid #C6D8F7;border-radius:12px;background:#FAFCFF;color:var(--brand)}
-    .secondary:hover{background:#EDF4FF}
-    .faq{margin:16px 16px 0;padding:21px 20px;background:var(--paper);border:1px solid var(--line);border-radius:21px}
-    .faq details{border-top:1px solid var(--line);padding:13px 0}
-    .faq details:last-child{padding-bottom:2px}
-    .faq summary{font-weight:700;font-size:.93rem;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .faq summary::-webkit-details-marker{display:none}
-    .faq summary::after{content:"+";font-size:1.3rem;color:var(--brand);line-height:1}
-    .faq details[open] summary::after{content:"−"}
-    .faq p{color:var(--muted);font-size:.88rem;margin:9px 0 0}
-    .checksum{overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.75rem;color:#344666;background:#F3F6FC;border-radius:9px;padding:10px;display:block;margin-top:9px}
-    .copy{margin-top:10px;background:#EDF3FF;color:var(--brand);border:1px solid #D2E0FD;border-radius:9px;font-size:.85rem;font-weight:700;padding:8px 12px;cursor:pointer}
-    footer{text-align:center;color:var(--muted);font-size:.78rem;padding:24px 16px 0}
-    @media(max-width:370px){.hero{padding-top:34px}.surface{padding:19px 16px}.steps,.faq{padding:17px 16px}.links{grid-template-columns:1fr}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cta{transition:none}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#175bd8">
+<meta name="description" content="Galcad — Soo deji app-ka Android oo raac tallaabooyinka rakibidda.">
+<title>Galcad — Bogga rasmiga ah</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23175bd8'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='43' fill='white'%3EG%3C/text%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light;--blue:#175bd8;--ink:#17283f;--muted:#596a80;--line:#e3e9f1;--soft:#f3f6fb}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.65 system-ui,-apple-system,'Segoe UI',sans-serif}a{color:var(--blue)}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}[hidden]{display:none!important}:focus-visible{outline:3px solid #d98000;outline-offset:5px}header{border-bottom:1px solid var(--line)}.nav{max-width:1040px;margin:auto;min-height:82px;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:800;letter-spacing:-.7px;text-decoration:none;color:var(--ink)}.mark{display:grid;place-items:center;background:var(--blue);color:#fff;border-radius:11px;width:36px;height:36px;font-size:25px;line-height:1;font-weight:800}.nav>a:last-child{font-size:14px;font-weight:600;text-decoration:none}main{max-width:1040px;margin:auto;padding:56px 28px 32px}.listing{display:grid;grid-template-columns:1fr 300px;gap:64px;align-items:start}.app-head{display:flex;gap:24px;align-items:center}.icon{width:112px;height:112px;flex:none;display:grid;place-items:center;border-radius:26px;background:linear-gradient(145deg,#2877ef,#1249b0);color:white;font-size:78px;font-weight:800;line-height:1;box-shadow:0 10px 25px #175bd820}.official{color:var(--blue);font-size:13px;font-weight:700;margin:0 0 4px}h1{font-size:48px;line-height:1.15;letter-spacing:-2px;margin:0 0 8px}h2{font-size:21px;letter-spacing:-.5px;line-height:1.4;margin:0 0 14px}p{margin:0}.muted{color:var(--muted)}.subtitle{font-size:15px;color:var(--muted)}.facts{display:flex;gap:0;margin:30px 0 26px}.fact{padding:0 25px;border-right:1px solid var(--line)}.fact:first-child{padding-left:0}.fact:last-child{border:0}.fact b{display:block;font-size:15px;font-weight:650}.fact span{font-size:12px;color:var(--muted)}.download{background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;min-height:54px;border-radius:12px;text-decoration:none;font-weight:700;border:0;width:100%;transition:background .15s}.download:hover{background:#1049b4}.download svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.download-area{max-width:390px}.under{font-size:12px;color:var(--muted);text-align:center;margin:10px 0 0}.notice{margin-top:16px;padding:12px 14px;background:#fff7e7;color:#785111;border-radius:10px;font-size:13px}.guide{background:var(--soft);border:1px solid var(--line);border-radius:20px;padding:25px}.guide .label{font-size:11px;letter-spacing:1.5px;color:var(--blue);font-weight:750;margin-bottom:10px}.steps{padding:0;list-style:none;margin:20px 0 0}.steps li{display:flex;gap:12px;margin-bottom:20px}.steps li:last-child{margin-bottom:0}.number{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid #cbd8ed;background:#fff;color:var(--blue);font-size:12px;font-weight:700}.steps b{display:block;font-size:14px}.steps p{font-size:13px;color:var(--muted);margin-top:3px}.feature{position:relative;margin:38px 0;background:#edf3ff;border-radius:20px;overflow:hidden;padding:30px 32px;min-height:160px;display:flex;align-items:center;justify-content:space-between;gap:18px}.feature h2{font-size:29px;margin:6px 0 8px;letter-spacing:-1px}.feature p{font-size:14px;color:#455d82;max-width:400px}.feature .kicker{color:var(--blue);font-size:11px;letter-spacing:1.4px;font-weight:750}.graphic{display:flex;align-items:center;gap:12px;color:var(--blue);flex:none}.graphic span{display:grid;place-items:center;width:55px;height:55px;border:1px solid #cddcf5;background:#ffffff90;border-radius:16px;font-size:24px}.graphic svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.help{max-width:680px;scroll-margin-top:20px}.help>p{font-size:14px;color:var(--muted);margin-bottom:22px}details{border-top:1px solid var(--line);padding:17px 0}summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:14px;font-weight:650}summary::-webkit-details-marker{display:none}summary::after{content:'+';color:var(--blue);font-size:20px;line-height:1}details[open] summary::after{content:'−'}details p{font-size:14px;color:var(--muted);margin-top:10px}.status{margin-top:20px;padding:20px;border:1px solid #ceddf5;border-radius:14px;background:#f5f8ff}.status h2{font-size:17px;margin-bottom:8px}.status p{font-size:14px;color:var(--muted)}.secondary{margin-top:14px;background:white;color:var(--blue);border:1px solid #cbd8ed;border-radius:9px;padding:10px 14px;font-size:13px;font-weight:650}.status a{display:inline-block;margin-top:10px;font-size:13px}.status ol{font-size:14px;padding-left:21px;margin:12px 0 0}footer{max-width:984px;margin:15px auto 0;border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;color:var(--muted);font-size:12px}footer a{text-decoration:none} @media(max-width:760px){.listing{grid-template-columns:1fr;gap:30px}main{padding-top:32px}.guide{padding:22px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.steps li{display:block;margin:0}.number{margin-bottom:10px}.download-area{max-width:none}.feature{margin:28px 0}.graphic{display:none}footer{margin-left:28px;margin-right:28px}.app-head{gap:20px}h1{font-size:40px}.icon{width:92px;height:92px;font-size:64px}}@media(max-width:390px){main{padding-left:20px;padding-right:20px}.nav{padding-left:20px;padding-right:20px}.steps{grid-template-columns:1fr}.steps li{display:flex}.number{margin:0}.feature{padding:24px}.fact{padding:0 17px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <main class="shell">
-    <header class="hero">
-      <div class="logo" role="img" aria-label="Astaanta Galcad">G</div>
-      <h1>Galcad</h1>
-      <p>App-ka Galcad si fudud ugu soo deji telefoonkaaga Android.</p>
-    </header>
-
-    <section class="surface" aria-labelledby="download-title">
-      <span class="pill">APK-ga GitHub Releases</span>
-      <h2 id="download-title">Galcad for Android</h2>
-      <p class="sub">Hal taabasho ayaa soo dejinta bilaabaysa. Android iyo Chrome ayaa faylka si toos ah u maamulaya.</p>
-
-      <div class="details" aria-label="Macluumaadka app-ka">
-        <div><strong>v1.0</strong><span>La xaqiijiyay</span></div>
-        <div><strong>9.1 MB</strong><span>Qiyaas</span></div>
-        <div><strong>Android</strong><span>Qalabka</span></div>
-      </div>
-
-      <!-- MUHIIM: Native link - ma jiro XHR, Blob, parallel ranges, ama prefetch. -->
-      <a class="cta" id="download" href="https://github.com/galcadapp/net/releases/latest/download/galcad-app.apk">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 21h14"/></svg>
-        Soo deji Galcad APK
-      </a>
-      <p class="hint">Soo dejintu waxay ka socotaa GitHub; horumarkeeda ka eeg Chrome → Downloads.</p>
-      <div class="native">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 10v6m0-10h.01"/></svg>
-        <p>Ma jiro download qarsoodi ah ama download laba-jeer ah. Boggan <strong>ma sheeganayo 100%</strong> ilaa browser-ku dhammaystiro soo dejinta.</p>
-      </div>
-      <div id="inappNotice" class="notice" role="status">Waxaad bogga ka furtay app kale gudihiisa. Haddii soo dejintu shaqayn weydo, taabo menu-ga <strong>⋮</strong> oo dooro <strong>Open in Chrome</strong> ama <strong>Open in browser</strong>.</div>
-      <div id="deviceNotice" class="notice" role="status">APK-gu wuxuu ku rakibmaa Android. Waxaad kombiyuutarka ku soo dejisan kartaa, ka dibna Android ugu wareejin kartaa.</div>
-      <div id="downloadNotice" class="notice" role="status" aria-live="polite">Haddii browser-ku soo bandhigo oggolaansho, dooro <strong>Download</strong>. Ka hubi <strong>Chrome → Downloads</strong>. Marka uu dhammaado, taabo faylka APK-ga si aad u rakibto.</div>
-    </section>
-
-    <section class="steps" aria-labelledby="steps-title">
-      <h2 class="section-title" id="steps-title">Sida loo rakibo</h2>
-      <div class="step"><div class="num">1</div><div><strong>Soo deji APK-ga</strong><p>Taabo badhanka buluugga ah ee kore. Browser-ku wuxuu maamuli doonaa download-ka.</p></div></div>
-      <div class="step"><div class="num">2</div><div><strong>Fur faylka la soo dejiyay</strong><p>Chrome → ⋮ → Downloads, kadibna taabo <b>galcad-app.apk</b>.</p></div></div>
-      <div class="step"><div class="num">3</div><div><strong>Ku rakib Android</strong><p>Haddii laguu oggolaado, dooro <b>Install</b>, kadibna <b>Open</b>.</p></div></div>
-      <div class="links">
-        <a class="secondary" href="https://github.com/galcadapp/net/releases/download/v1.0/galcad-app.apk">Download v1.0</a>
-        <a class="secondary" href="https://github.com/galcadapp/net/releases/latest">Bogga Release-ka</a>
-      </div>
-    </section>
-
-    <section class="faq" aria-labelledby="faq-title">
-      <h2 class="section-title" id="faq-title">Su'aalaha muhiimka ah</h2>
-      <details>
-        <summary>Maxaan u arki waayay progress %?</summary>
-        <p>Si download-ku u noqdo mid fudud oo browser-ku maamulo, boggu ma isticmaalo JavaScript si uu faylka u dhex mariyo memory-ga. Progress-ka dhabta ah ka eeg qaybta Downloads ee Chrome.</p>
-      </details>
-      <details>
-        <summary>Haddii Android yiraahdo "Install unknown apps"?</summary>
-        <p>Kaliya haddii aad ku kalsoon tahay APK-ga iyo isha uu ka yimid, Android Settings ka oggolow browser-ka inuu rakibo app-ka. Rakibidda kadib oggolaanshaha waad ka laaban kartaa.</p>
-      </details>
-      <details>
-        <summary>Haddii Play Protect uu APK-ga xannibo?</summary>
-        <p>Ha damin Play Protect ama digniintiisa si indho la'aan ah ha u dhaafin. Marka hore xaqiiji in APK-gu yahay kii saxda ahaa, hubi checksum-kiisa, kadibna la xiriir soo saaraha haddii digniintu sii jirto.</p>
-      </details>
-      <details>
-        <summary>Sidee u xaqiijiyaa faylka v1.0?</summary>
-        <p>GitHub wuxuu ku daabacay SHA-256-kan APK-ga <b>v1.0</b>. Wuxuu khuseeyaa v1.0 oo keliya; haddii latest la cusboonaysiiyo, checksum cusub ayaa loo baahan yahay.</p>
-        <code class="checksum" id="checksum">be57f8e6e003898f6a8a9615bec9b2ed666450402c6b8ac82bd013ef5035e0b7</code>
-        <button id="copy" class="copy" type="button">Nuqul SHA-256</button>
-      </details>
-      <details>
-        <summary>Haddii download-ku wali gaabis yahay?</summary>
-        <p>Isku day Wi-Fi ama shabakad kale. Sidoo kale ku tijaabi link-ga <b>Download v1.0</b> ee kore. Haddii labadooduba gaabis yihiin, cilladdu waxay noqon kartaa internet-ka, GitHub CDN, ama browser-ka — ma aha JavaScript-ka boggan.</p>
-      </details>
-    </section>
-    <footer>Galcad · Android APK · Download ka GitHub Releases</footer>
-  </main>
-  <script>
-    (() => {
-      'use strict';
-      // JavaScript-kan wuxuu qabtaa keliya UI. Faylka browser-ka ayaa si toos ah u dejinaya.
-      const ua = navigator.userAgent || '';
-      const isAndroid = /Android/i.test(ua);
-      const inApp = /;\s*wv\)|\bFBAN\b|\bFBAV\b|Instagram|TikTok|Snapchat|Telegram|\bLine\//i.test(ua);
-      const $ = id => document.getElementById(id);
-      if (inApp) $('inappNotice').classList.add('visible');
-      if (!isAndroid) $('deviceNotice').classList.add('visible');
-      $('download').addEventListener('click', () => {
-        // Ha isticmaalin preventDefault(): xiriirku si toos ah ayuu GitHub u furayaa.
-        $('downloadNotice').classList.add('visible');
-      });
-      $('copy').addEventListener('click', async () => {
-        const val = $('checksum').textContent.trim();
-        try {
-          if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('clipboard not supported');
-          await navigator.clipboard.writeText(val);
-          $('copy').textContent = '✓ Waa la koobiyey';
-        } catch (_) {
-          $('copy').textContent = 'Dooro hash-ka sare si aad u koobiyayso';
-        }
-      });
-    })();
-  </script>
+<header><nav class="nav" aria-label="Bogga"><a class="brand" href="./"><span class="mark" aria-hidden="true">G</span>Galcad</a><a href="#help">Caawinta rakibidda ↗</a></nav></header>
+<main>
+<div class="listing">
+<section aria-labelledby="app-name">
+<div class="app-head"><div class="icon" role="img" aria-label="Galcad">G</div><div><p class="official">Bogga rasmiga ah</p><h1 id="app-name">Galcad</h1><p class="subtitle">App-ka Android</p></div></div>
+<div class="facts"><div class="fact"><b>Android</b><span>Qalabka</span></div><div class="fact"><b>APK</b><span>Faylka app-ka</span></div><div class="fact"><b id="version">Galcad</b><span id="version-label">App-ka</span></div></div>
+<div class="download-area"><a id="download" class="download" href="https://github.com/galcadapp/net/releases/latest/download/galcad-app.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg><span>Soo deji Galcad</span></a><p class="under">Soo deji. Rakib. Fur Galcad.</p></div>
+<p id="device" class="notice" hidden>Galcad waxaa lagu rakibaa Android. Boggan ku fur telefoonkaaga Android.</p>
+<p id="inapp" class="notice" hidden>Taabo menu-ga ⋮ oo dooro “Open in browser” si aad app-ka u soo dejiso.</p>
+<section id="status" class="status" hidden aria-labelledby="status-title"><div role="status" aria-live="polite"><h2 id="status-title">Ka eeg soo dejinta browser-ka</h2><p>Haddii lagu weydiiyo, taabo Download. Marka faylku soo dego, taabo Open.</p></div><ol><li>Fur <b>galcad-app.apk</b>.</li><li>Taabo <b>Install</b>, kadibna <b>Open</b>.</li></ol><button id="show-help" type="button" class="secondary" aria-expanded="false" aria-controls="downloads-help">Ma arko faylka</button><p id="downloads-help" hidden>Fur menu-ga browser-ka ⋮ → Downloads, ama ogeysiiska soo dejinta. Taabo galcad-app.apk.</p><br><a href="https://github.com/galcadapp/net/releases/latest" target="_blank" rel="noopener">Soo dejintu ma bilaaban? Fur bogga soo dejinta ↗</a></section>
+</section>
+<aside class="guide" aria-labelledby="guide-title"><p class="label">SADDEX TALLAABO</p><h2 id="guide-title">Diyaar u noqo Galcad.</h2><ol class="steps"><li><span class="number">1</span><div><b>Soo deji</b><p>Taabo batoonka soo dejinta.</p></div></li><li><span class="number">2</span><div><b>Rakib</b><p>Fur faylka, kadib taabo Install.</p></div></li><li><span class="number">3</span><div><b>Bilow</b><p>Taabo Open oo fur Galcad.</p></div></li></ol></aside>
+</div>
+<section class="feature" aria-labelledby="feature-title"><div><p class="kicker">GALCAD · ANDROID</p><h2 id="feature-title">Galcad, telefoonkaaga.</h2><p>Soo deji app-ka oo raac tallaabooyinka kore si aad u dhammaystirto rakibidda.</p></div><div class="graphic" aria-hidden="true"><span><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></span>→<span><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="m9 11 2 2 4-4M11 18h2"/></svg></span></div></section>
+<section class="help" id="help" aria-labelledby="help-title"><h2 id="help-title">Wax ma kaa xanniban yihiin?</h2><p>Jawaabaha su’aalaha rakibidda.</p><details><summary>Sideen u rakibaa app-ka?</summary><p>Marka soo dejintu dhammaato, taabo Open ee browser-ka ama ogeysiiska telefoonka. Kadib taabo Install. Marka rakibiddu dhammaato, taabo Open si aad u furto Galcad.</p></details><details><summary>Android wuxuu i weydiiyay oggolaansho</summary><p>Haddii aad ku kalsoon tahay app-ka iyo halka aad ka soo dejisay, fur Settings marka lagu weydiiyo, kadib daar “Allow from this source”. Ku noqo rakibidda. Oggolaanshaha waad damin kartaa markaad dhammayso. Haddii digniin amni soo baxdo, akhri ka hor intaadan sii wadin.</p></details><details><summary>Xagee ka helaa faylka la soo dejiyay?</summary><p>Fur Chrome ⋮ → Downloads ama app-ka Files → Downloads. Dooro galcad-app.apk si aad u bilowdo rakibidda.</p></details><details><summary>Soo dejintu ma bilaabmayso</summary><p>Hubi internet-kaaga oo boggan ku fur browser-ka telefoonkaaga. Isku day mar kale, ama <a href="https://github.com/galcadapp/net/releases/latest" target="_blank" rel="noopener">fur bogga soo dejinta</a>.</p></details></section>
+</main><footer><span>© <span id="year">2026</span> Galcad</span><a href="#help">Caawinta</a></footer>
+<script>
+(() => {
+'use strict';
+const byId = id => document.getElementById(id);
+byId('year').textContent = new Date().getFullYear();
+const ua = navigator.userAgent || '';
+byId('device').hidden = /Android/i.test(ua);
+byId('inapp').hidden = !/;\s*wv\)|FBAN|FBAV|Instagram|TikTok|Snapchat|Telegram/i.test(ua);
+byId('download').addEventListener('click', () => { byId('status').hidden = false; });
+byId('show-help').addEventListener('click', () => {
+const panel = byId('downloads-help');
+panel.hidden = !panel.hidden;
+byId('show-help').setAttribute('aria-expanded', String(!panel.hidden));
+});
+// Optional release metadata never blocks the native browser download.
+const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 5000);
+fetch('https://api.github.com/repos/galcadapp/net/releases/latest', {signal:controller.signal})
+.then(response => { if (!response.ok) throw new Error('Release unavailable'); return response.json(); })
+.then(release => {
+const asset = (release.assets || []).find(item => item.name === 'galcad-app.apk');
+if (!asset) return;
+if (typeof release.tag_name === 'string' && release.tag_name.length < 25) {
+byId('version').textContent = release.tag_name;
+byId('version-label').textContent = 'Nooca';
+}
+if (Number.isFinite(asset.size) && asset.size > 0) {
+ document.querySelector('.under').textContent = (asset.size / 1048576).toFixed(1) + ' MB · Android APK';
+}
+}).catch(() => {}).finally(() => clearTimeout(timeout));
+})();
+</script>
 </body>
 </html>
