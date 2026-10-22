@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galcad: soo deji app-ka</title>
+<meta name="description" content="Soo deji oo ku rakib Galcad telefoonkaaga Android.">
+<meta name="theme-color" content="#2563EB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23fff' stroke='%232B9BE8' stroke-width='4'/%3E%3Ctext x='32' y='38' font-family='Arial' font-weight='800' font-size='18' text-anchor='middle' fill='%232B9BE8'%3EG%3C/text%3E%3C/svg%3E">
+<style>
+:root{--brand:#2563EB;--brand-d:#1D4ED8;--ink:#0F2145;--mute:#506080;--bg:#EAF0FD;--card:#fff;--line:#D6E0F5;--ok:#15803D}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;justify-content:center;padding:0 0 32px}
+main{width:100%;max-width:440px}
+[hidden]{display:none!important}
+.top{background:var(--brand);color:#fff;padding:48px 24px 76px;text-align:center;border-radius:0 0 32px 32px}
+.logo{width:120px;height:120px;display:block;margin:0 auto 18px;border-radius:50%;box-shadow:0 10px 28px rgba(8,25,70,.35)}
+h1{font-size:2.25rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.tag{margin-top:10px;font-size:1.05rem;line-height:1.45;opacity:.95}
+.card{background:var(--card);margin:-44px 16px 0;border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(15,33,69,.14)}
+.facts{display:flex;justify-content:space-around;text-align:center;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.facts b{display:block;font-size:1.1rem}
+.facts span{font-size:.85rem;color:var(--mute)}
+.install{margin-top:18px;width:100%;border:0;border-radius:16px;background:var(--brand-d);color:#fff;font:inherit;font-size:1.3rem;font-weight:800;padding:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.install:active{transform:scale(.98)}
+.install svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.install.green{background:var(--ok)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.warn{margin-top:14px;font-size:.9rem;color:#8A4B00;background:#FFF3DF;border-radius:12px;padding:10px 12px;line-height:1.45}
+.warn a{color:inherit;font-weight:700}
+.prog{margin-top:18px}
+.ptop{display:flex;justify-content:space-between;align-items:baseline}
+.ptop b{font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.ptop span{color:var(--mute);font-size:.9rem}
+
+/* Xariiqda bidix iyo midig u socota (download socdo) */
+.bar{position:relative;height:14px;border-radius:8px;background:var(--bg);overflow:hidden;margin:14px 0}
+.bar i{position:absolute;top:0;left:0;height:100%;width:34%;background:var(--brand);border-radius:8px;animation:slide 1.1s ease-in-out infinite alternate}
+@keyframes slide{from{left:0}to{left:66%}}
+@media (prefers-reduced-motion:reduce){
+  .bar i{animation:pulse 1.2s ease-in-out infinite alternate;left:0;width:100%}
+  @keyframes pulse{from{opacity:.35}to{opacity:1}}
+}
+
+#msg{color:var(--ink);font-size:1rem;font-weight:600;margin-bottom:4px;line-height:1.4}
+.sub{color:var(--mute);font-size:.9rem;margin-bottom:12px;line-height:1.4}
+.okline{line-height:1.45;color:var(--ok);font-size:1.1rem}
+.help{margin-top:18px}
+.help h2{font-size:1.15rem}
+.help .lead{margin-top:6px;color:var(--mute);font-size:.98rem;line-height:1.5}
+.row{display:flex;gap:10px;margin-top:14px}
+.btn{flex:1;text-align:center;text-decoration:none;font:inherit;font-weight:700;font-size:.95rem;padding:13px 10px;border-radius:12px;border:2px solid var(--brand-d);color:var(--brand-d);background:#fff;cursor:pointer}
+footer{text-align:center;margin-top:22px;font-size:.85rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <svg class="logo" viewBox="0 0 120 120" role="img" aria-label="Galcad">
+      <circle cx="60" cy="60" r="57" fill="#fff" stroke="#2B9BE8" stroke-width="5"/>
+      <text x="60" y="70" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-weight="800" font-size="27" fill="#2B9BE8">Galcad</text>
+    </svg>
+    <h1>Galcad</h1>
+    <p class="tag">Soo deji app-ka oo ku rakib telefoonkaaga Android.</p>
+  </header>
+
+  <section class="card">
+    <div class="facts">
+      <div><b>9.1 MB</b><span>Cabbirka</span></div>
+      <div><b>Android</b><span>Qalabka</span></div>
+    </div>
+
+    <button class="install" id="install" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+      Install Now
+    </button>
+
+    <p class="warn" id="warn" hidden>Bogga waxaad ka furtay qalab aan Android ahayn. APK-gu wuxuu ku shaqeeyaa Android kaliya.</p>
+    <p class="warn" id="inapp" hidden>Bogga waxaad ka furtay app kale gudihiisa. Taabo menu-ga (&#8942;), kadibna <b>Open in browser</b> ama <b>Open in Chrome</b>, si soo dejintu u shaqeyso.</p>
+    <p class="warn" id="local" hidden>Bogga waxaa laga furay fayl ku jira telefoonka. Soo dejinta gudaha bogga waxay u baahan tahay in bogga la geliyo internet (https), tusaale GitHub Pages. Hadda isticmaal <a href="https://github.com/galcadapp/net/releases/latest/download/galcad-app.apk">soo deji toos</a>.</p>
+    <div class="warn" id="err" hidden>
+      Soo dejinta bogga gudihiisa ma shaqayn. Isku day mar kale, ama
+      <a href="https://github.com/galcadapp/net/releases/latest/download/galcad-app.apk">soo deji toos</a>.
+    </div>
+
+    <div class="prog" id="prog" hidden aria-live="polite">
+      <div class="ptop"><b id="pct">...</b><span id="sz">0.0 MB / 9.1 MB</span></div>
+      <div class="bar" id="bar" role="progressbar" aria-label="Soo dejinta"><i></i></div>
+      <p id="msg">Wax yar sug... app-ka waa la soo dejinayaa.</p>
+      <p class="sub">Ha xirin bogga ilaa uu dhamaado.</p>
+      <button class="btn" id="cancel" type="button" style="width:100%">Jooji</button>
+    </div>
+
+    <div class="prog" id="done" hidden>
+      <p class="okline"><b>&#10003; Waa la soo dejiyay.</b> Hadda rakib app-ka.</p>
+      <button class="install green" id="installNow" type="button">Install Galcad</button>
+    </div>
+
+    <div class="help" id="help" hidden aria-live="polite">
+      <h2>Hadda rakib app-ka</h2>
+      <p class="lead">Taabo <b>Open</b> ee hoosta browser-ka ama notification-ka. Haddii telefoonku weydiiyo, daar <b>Install unknown apps</b> (Allow), kadibna taabo <b>Install</b>.</p>
+      <div class="row">
+        <a class="btn" id="dl" href="intent:#Intent;action=android.intent.action.VIEW_DOWNLOADS;end">Fur Downloads</a>
+        <button class="btn" id="again" type="button">Dib u keydi</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Galcad v1.0</footer>
+</main>
+
+<script>
+  var OWNER_REPO = "galcadapp/net";
+  var LOCAL_APK = "galcad-app.apk"; // Haddii APK-ga la geliyo isla galka index.html, tan ayaa marka hore la isticmaalaa
+  var FALLBACK_SIZE = 9575056;
+  var APK_MIME = "application/vnd.android.package-archive";
+  var ua = navigator.userAgent;
+  var isAndroid = /Android/i.test(ua);
+  var inApp = /; wv\)|FBAN|FBAV|Instagram|TikTok|Snapchat|Telegram/i.test(ua);
+  var isWeb = /^https?:$/.test(location.protocol);
+  var blobUrl = null, req = null, cancelled = false;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+
+  function setProgress(loaded, total, known) {
+    var shown = Math.min(loaded, total);
+    $("sz").textContent = mb(shown) + " / " + mb(total);
+    $("pct").textContent = known ? Math.min(99, Math.floor(loaded / total * 100)) + "%" : "...";
+  }
+
+  // XHR: progress wuxuu ku shaqeeyaa browser kasta
+  function get(url, type, headers, track, fallbackTotal) {
+    return new Promise(function (resolve, reject) {
+      var x = new XMLHttpRequest();
+      req = x;
+      x.open("GET", url);
+      x.responseType = type;
+      Object.keys(headers || {}).forEach(function (k) { x.setRequestHeader(k, headers[k]); });
+      if (track) x.onprogress = function (e) {
+        var known = e.lengthComputable && e.total > 0;
+        setProgress(e.loaded, known ? e.total : fallbackTotal, known);
+      };
+      x.onload = function () {
+        if (x.status === 0 || (x.status >= 200 && x.status < 300)) resolve(x.response);
+        else reject(new Error("http " + x.status));
+      };
+      x.onerror = function () { reject(new Error("network")); };
+      x.ontimeout = function () { reject(new Error("timeout")); };
+      x.onabort = function () { var e = new Error("abort"); e.name = "AbortError"; reject(e); };
+      x.send();
+    });
+  }
+
+  async function getApk() {
+    // 1) Faylka isla goobtan (kaliya marka bogga laga furay https)
+    if (isWeb) {
+      try {
+        var b = await get(LOCAL_APK, "blob", null, true, FALLBACK_SIZE);
+        if (b && b.type.indexOf("text/html") < 0 && b.size > 100000) return { blob: b, size: b.size };
+      } catch (e) { if (e.name === "AbortError") throw e; }
+    }
+
+    // 2) GitHub release-ka ugu dambeeya
+    setProgress(0, FALLBACK_SIZE, false);
+    var rel = await get("https://api.github.com/repos/" + OWNER_REPO + "/releases/latest", "json");
+    var asset = ((rel && rel.assets) || []).filter(function (a) { return /\.apk$/i.test(a.name); })[0];
+    if (!asset) throw new Error("noasset");
+    var size = asset.size || FALLBACK_SIZE;
+    var blob = await get(asset.url, "blob", { Accept: "application/octet-stream" }, true, size);
+    if (!blob || blob.size < 100000) throw new Error("badfile");
+    return { blob: blob, size: size };
+  }
+
+  async function start() {
+    cancelled = false;
+    $("install").hidden = true;
+    $("done").hidden = true;
+    $("help").hidden = true;
+    $("err").hidden = true;
+    setProgress(0, FALLBACK_SIZE, false);
+    $("prog").hidden = false;
+    try {
+      var r = await getApk();
+      if (cancelled) return;
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
+      blobUrl = URL.createObjectURL(new Blob([r.blob], { type: APK_MIME }));
+      $("prog").hidden = true;
+      $("done").hidden = false;
+    } catch (e) {
+      $("prog").hidden = true;
+      $("install").hidden = false;
+      if (e.name !== "AbortError") $("err").hidden = false;
+    }
+  }
+
+  // Marka user-ku taabto, faylka waa la keydiyaa; Chrome wuxuu muujiyaa "Open"
+  function save() {
+    if (!blobUrl) return start();
+    var a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = "galcad-app.apk";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    $("help").hidden = false;
+    $("help").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  $("install").addEventListener("click", start);
+  $("installNow").addEventListener("click", save);
+  $("again").addEventListener("click", save);
+  $("cancel").addEventListener("click", function () { cancelled = true; if (req) req.abort(); });
+
+  if (!isAndroid) { $("warn").hidden = false; $("dl").hidden = true; }
+  else if (inApp) { $("inapp").hidden = false; }
+  if (!isWeb) { $("local").hidden = false; }
+</script>
+</body>
+</html>
