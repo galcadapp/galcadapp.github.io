@@ -10,6 +10,7 @@
 <style>
 :root{color-scheme:light;--brand:#2563eb;--ink:#112447;--muted:#687993;--line:#e3eaf5}*{box-sizing:border-box;margin:0}html{-webkit-text-size-adjust:100%}body{min-height:100svh;background:#edf2fc;color:var(--ink);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;padding-bottom:32px}main{width:100%;max-width:440px;margin:auto}.top{background:linear-gradient(155deg,#3077f2,#1d4ed8);color:white;padding:56px 24px 86px;text-align:center;border-radius:0 0 36px 36px}.logo{width:112px;height:112px;display:block;margin:0 auto 20px;filter:drop-shadow(0 12px 18px #102b7030)}h1{font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1.2}.platform{margin-top:8px;font-size:14px;color:#e1ebff}.card{position:relative;background:white;margin:-42px 18px 0;padding:26px 24px;border-radius:24px;box-shadow:0 14px 38px #12336b12;border:1px solid #ffffff80}.facts{display:flex;justify-content:center;gap:0;text-align:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--line)}.facts>div{width:50%}.facts>div+div{border-left:1px solid var(--line)}.facts b{display:block;font-size:16px;font-weight:650}.facts span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.primary{width:100%;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--brand);border:0;border-radius:14px;color:white;text-decoration:none;font:700 17px system-ui;cursor:pointer}.primary:hover{background:#1d4ed8}.primary:active{transform:scale(.99)}.primary svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.progress-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.progress-top b{font-size:27px;font-variant-numeric:tabular-nums}.progress-top span{font-size:12px;color:var(--muted)}.track{height:7px;background:#e9effa;border-radius:8px;overflow:hidden;margin:15px 0 20px}.fill{height:100%;width:0;background:var(--brand);border-radius:8px}.track.indeterminate .fill{width:35%;animation:loading 1.1s infinite alternate ease-in-out}@keyframes loading{to{transform:translateX(185%)}}.secondary{display:block;margin:16px auto 0;background:none;border:0;color:var(--brand);font:600 14px system-ui;cursor:pointer;text-decoration:none;text-align:center;padding:8px}.message{font-size:13px;color:var(--muted);line-height:1.6;text-align:center;margin-top:16px}.error{color:#994f13}.ready{background:#168149}.ready:hover{background:#126b3c}[hidden]{display:none!important}:focus-visible{outline:3px solid #e5a528;outline-offset:4px}@media(min-width:600px){main{margin-top:48px}.top{border-radius:32px}}@media(prefers-reduced-motion:reduce){.track.indeterminate .fill{animation:none;width:100%;opacity:.5}}
 .instructions{margin:18px 18px 0;padding:24px;background:#fff;border:1px solid var(--line);border-radius:22px}.instructions h2{font-size:18px;letter-spacing:-.3px;margin-bottom:20px}.instructions ol{list-style:none}.instructions li{display:flex;gap:13px;margin-bottom:21px}.step{flex:none;display:grid;place-items:center;width:29px;height:29px;background:#edf3ff;color:var(--brand);border-radius:9px;font-size:13px;font-weight:700}.instructions b{font-size:14px}.instructions p{font-size:13px;line-height:1.65;color:var(--muted);margin-top:4px}.instructions details{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}.instructions summary{cursor:pointer;font-size:13px;font-weight:600}.instructions details p{margin-top:9px}
+.track{position:relative;height:10px}.fill{transition:width .18s linear}.sweep{position:absolute;top:0;left:0;height:100%;width:28%;border-radius:8px;background:#74a6ff;animation:sweep 1.2s ease-in-out infinite alternate}.track.complete .sweep{display:none}.track.complete .fill{background:#168149}@keyframes sweep{from{left:0}to{left:72%}}#install{margin-top:20px}@media(prefers-reduced-motion:reduce){.sweep{animation:none;display:none}.fill{transition:none}}
 </style>
 </head>
 <body>
@@ -21,15 +22,21 @@
 <section class="card" aria-label="Download Galcad">
 <div class="facts"><div><b id="size">APK</b><span id="sizeLabel">Faylka</span></div><div><b>Android</b><span>Qalabka</span></div></div>
 <a class="primary" id="download" href="https://github.com/galcadapp/net/releases/latest/download/galcad-app.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4"/></svg>Download</a>
-<p class="message" id="message" role="status" aria-live="polite" hidden>Ka eeg soo dejinta Chrome. Marka ay dhammaato, taabo Open.</p>
-<a class="secondary" id="fallback" href="galcad-app.apk" download="galcad-app.apk" hidden>Isku day xiriir kale</a>
-<p class="message" id="alternate-note" hidden>Haddii soo dejintii hore wali socoto, marka hore jooji.</p>
+<div id="progress" hidden>
+<div class="progress-top"><b id="percent">0%</b><span id="bytes">0.0 MB</span></div>
+<div class="track" id="bar" role="progressbar" aria-label="Soo dejinta" aria-valuemin="0" aria-valuemax="100"><div class="fill" id="fill"></div><i class="sweep"></i></div>
+<button class="secondary" id="cancel" type="button">Jooji</button>
+</div>
+<a class="primary ready" id="install" download="galcad-app.apk" hidden>Install Now</a>
+<p class="message" id="message" role="status" aria-live="polite" hidden></p>
+<a class="secondary" id="fallback" href="https://github.com/galcadapp/net/releases/latest/download/galcad-app.apk" hidden>Soo deji toos ↗</a>
+<noscript><p class="message">Fur APK-ga la soo dejiyay, kadib taabo Install → Open.</p></noscript>
 </section>
 <section class="instructions" aria-labelledby="instructions-title">
 <h2 id="instructions-title">Sida loo rakibo</h2>
 <ol>
-<li><span class="step">1</span><div><b>Soo deji</b><p>Taabo Download. Haddii Chrome ku weydiiyo, xaqiiji soo dejinta.</p></div></li>
-<li><span class="step">2</span><div><b>Rakib · Install</b><p>Marka soo dejintu dhammaato, taabo Open ee ogeysiiska Chrome. Fur galcad-app.apk, kadib taabo Install.</p></div></li>
+<li><span class="step">1</span><div><b>Soo deji</b><p>Taabo Download oo sug inta uu gaarayo 100%.</p></div></li>
+<li><span class="step">2</span><div><b>Rakib · Install</b><p>Taabo Install Now si APK-ga loo kaydiyo. Kadib taabo Open ee Chrome, oo dooro Install.</p></div></li>
 <li><span class="step">3</span><div><b>Fur · Open</b><p>Marka rakibiddu dhammaato, taabo Open si aad u furto Galcad.</p></div></li>
 </ol>
 <details><summary>Ma arko faylka</summary><p>Fur Chrome ⋮ → Downloads, kadib taabo galcad-app.apk.</p></details>
@@ -38,16 +45,76 @@
 </main>
 <script>
 (() => {
- 'use strict';
- const showSteps = () => {
-  document.getElementById('message').hidden = false;
-  document.getElementById('fallback').hidden = false;
-  document.getElementById('alternate-note').hidden = false;
+'use strict';
+const $ = id => document.getElementById(id);
+let active = null, objectURL = null, serial = 0, watchdog = null;
+const mb = bytes => (bytes / 1048576).toFixed(1) + ' MB';
+function say(text) { $('message').hidden = !text; $('message').textContent = text; }
+function stopTimer() { clearTimeout(watchdog); }
+function error(token) {
+ if (token !== serial) return;
+ ++serial; stopTimer();
+ const request = active; active = null;
+ if (request) request.abort();
+ $('download').hidden = false; $('progress').hidden = true;
+ $('install').hidden = true; $('fallback').hidden = false;
+ say('Soo dejintu ma dhammaan. Isku day mar kale ama soo deji toos.');
+}
+function watch(token) { stopTimer(); watchdog = setTimeout(() => error(token), 45000); }
+$('download').addEventListener('click', event => {
+ event.preventDefault();
+ if (active) return;
+ const token = ++serial;
+ if (objectURL) { URL.revokeObjectURL(objectURL); objectURL = null; }
+ $('download').hidden = true; $('install').hidden = true; $('fallback').hidden = true;
+ $('progress').hidden = false; $('cancel').hidden = false;
+ $('bar').classList.remove('complete'); $('bar').removeAttribute('aria-valuenow');
+ $('fill').style.width = '0%'; $('percent').textContent = '0%'; $('bytes').textContent = '0.0 MB';
+ say('Waa la soo dejinayaa…');
+ const x = new XMLHttpRequest(); active = x;
+ x.open('GET', 'galcad-app.apk'); x.responseType = 'blob';
+ x.onprogress = event => {
+  if (token !== serial) return;
+  watch(token);
+  $('bytes').textContent = mb(event.loaded) + (event.lengthComputable ? ' / ' + mb(event.total) : '');
+  if (event.lengthComputable && event.total > 0) {
+   const percent = Math.min(99, Math.floor(event.loaded / event.total * 100));
+   $('percent').textContent = percent + '%'; $('fill').style.width = percent + '%';
+   $('bar').setAttribute('aria-valuenow', String(percent));
+  } else {
+   $('percent').textContent = '…'; $('bar').removeAttribute('aria-valuenow');
+  }
  };
- // Keep the native link: Chrome owns transfer, saving, progress, and resume.
- // A webpage cannot observe download completion or launch Android's installer.
- document.getElementById('download').addEventListener('click', showSteps);
- document.getElementById('fallback').addEventListener('click', showSteps);
+ x.onload = async () => {
+  if (token !== serial) return;
+  stopTimer();
+  try {
+   if (x.status !== 200 || !x.response || x.response.size < 4) throw new Error('Invalid response');
+   const signature = new Uint8Array(await x.response.slice(0,4).arrayBuffer());
+   if (token !== serial) return;
+   if (signature[0] !== 80 || signature[1] !== 75 || signature[2] !== 3 || signature[3] !== 4) throw new Error('Not an APK container');
+   objectURL = URL.createObjectURL(new Blob([x.response], {type:'application/vnd.android.package-archive'}));
+   active = null;
+   $('percent').textContent = '100%'; $('fill').style.width = '100%';
+   $('bar').setAttribute('aria-valuenow','100'); $('bar').classList.add('complete');
+   $('bytes').textContent = mb(x.response.size); $('size').textContent = mb(x.response.size);
+   $('sizeLabel').textContent = 'Cabbirka'; $('cancel').hidden = true;
+   $('install').href = objectURL; $('install').hidden = false;
+   say('Diyaar. Taabo Install Now si faylka loo kaydiyo.');
+  } catch (_) { error(token); }
+ };
+ x.onerror = x.ontimeout = () => error(token);
+ watch(token);
+ try { x.send(); } catch (_) { error(token); }
+});
+$('cancel').addEventListener('click', () => {
+ ++serial; stopTimer(); const request = active; active = null;
+ if (request) request.abort();
+ $('progress').hidden = true; $('download').hidden = false; say('');
+});
+$('install').addEventListener('click', () => {
+ say('Taabo Open ee Chrome → Install → Open. Haddii uusan muuqan, fur Chrome ⋮ → Downloads → galcad-app.apk.');
+});
 })();
 </script>
 </body>
